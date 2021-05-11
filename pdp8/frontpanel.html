@@ -34,17 +34,19 @@
 </style>
 <script>
     var c = []  // Array of colors
-    c['color1']='#ff0000'
-    c['color2']='#ffff00'
-    c['color3']='#00ff00'
-    c['color4']='#00ffff'
-    c['color5']='#0000ff'
-    c['color6']='#ff00ff'
-    c['color7']='#000000'
-    c['color7']='#ffffff'
+    c['1']='#ff0000'
+    c['2']='#ffff00'
+    c['3']='#00ff00'
+    c['4']='#00ffff'
+    c['5']='#0000ff'
+    c['6']='#ff00ff'
+    c['7']='#000000'
+    c['8']='#ffffff'
     var v = []  // Array of values
     v['_MAINWIDTH'] = {val: 300, min: 100, max: 500 , step: 1}
     v['_MAINHEIGHT'] = {val: 180, min: 50, max: 300 , step: 1}
+    v['_FRAMETHICKNESS'] = {val: 2, min: 0, max: 20 , step: 1}
+    v['_FRAME_COLOR'] = {val:2, min:1, max:8, step:1}
     v['_LOGOXPOS'] = {val: 21, min: 3, max: 500 , step: 1}
     v['_LOGO_SCALE'] = {val: 0.08, min: 0.01, max: 0.2, step: 0.005 }
     v['_NAME_FONT'] = {val: 1, min: 0, max: 5 , step: 1}
@@ -52,7 +54,8 @@
     v['_NAME_YPOS'] = {val: 0, min: -50, max: 50 , step: 1}
     v['_NAME_SIZE'] = {val: 13, min: 1, max: 30, step: 0.25 }
     v['_FRAMETOPTHICKNESS'] = {val: 15, min: 0, max: 100 , step: 1}
-    v['_FRAMETHICKNESS'] = {val: 2, min: 0, max: 20 , step: 1}
+    v['_LABEL_PLATE1_COLOR'] = {val:1, min:1, max:8, step:1}
+    v['_LABEL_PLATE2_COLOR'] = {val:2, min:1, max:8, step:1}
     v['_LABELSIZE_NUM'] = {val: 9, min: 0.25, max: 20, step: 0.25 }
     v['_LABELSIZE_F1'] = {val: 4.5, min: 0.25,  max: 20, step: 0.25 }
     v['_LABELSIZE_F2'] = {val: 4.5, min: 0.25,  max: 20, step: 0.25 }
@@ -63,6 +66,7 @@
     v['_LABEL_TOPOFS_F2'] = {val: 14, min: 0.25, max: 40, step: 0.25 }
     v['_LABEL_BOTOFS_F2'] = {val: 15.5, min: 0.25, max: 40, step: 0.25 }
     v['_LED_SHAPE'] = {val: 1, min: 0, max: 1 , step: 1}
+    v['_GROUPBAR_THICKNESS'] = {val: 0.25, min: 0.25, max: 4, step: 0.25}
     v['_REGISTER_XSPACING'] = {val: 11, min: 1, max: 15, step: 0.25 }
     v['_REGISTER_XPOS'] = {val: 0, min: 0, max: 400 , step: 1}
     v['_REGISTER_YPOS'] = {val: 40, min: 0, max: 400 , step: 1}
@@ -87,7 +91,8 @@
         <div id="settingsheader">Settings panel</div>
         <button onclick="Display(0)">VALUES</button>&nbsp; 
         <button onclick="Display(1)">COLORS</button>&nbsp; 
-        <button onclick="Download()">DL SVG</button>&nbsp; 
+        <button onclick="Download(1)">dlSVG</button>&nbsp; 
+        <button onclick="Download(2)">dlURL</button>&nbsp; 
         <br> 
         Name:<span id="vname"><select id="variable"></select></span>&nbsp; <span
             id="values" style="display:none"> Min:<span id="vmin">.</span>&nbsp; Max:<span id="vmax">.</span>&nbsp; Current:<span
@@ -131,11 +136,19 @@
     </div> <!-- END OF SETTINGS DIV -->
     <script>
 
+  
+        document.querySelectorAll('input[type=color]').forEach(item => {
+            item.addEventListener('input', event => {
+                c[item.id.substr(5)]=item.value
+                CreateDrawing();
+            })
+        })
+
         // Update variables with new default from URL
         let params = new URLSearchParams(window.location.search)
         for (let p of params) {
             if (p[0].substr(0, 1) == '_') v[p[0]].val = Number(p[1])
-            if (p[0].substr(0, 5) == 'color') c[p[0]].val = p[1]
+            if (p[0].substr(0, 5) == 'color') c[p[0].substr(5)].val = p[1]
         }
 
         // Display the default slider value
@@ -222,7 +235,7 @@
             const CUT = { 'fill': 'none', 'stroke': CUT_COLOR, 'stroke-width': CUT_STROKE }
             const SEGMENTS = { 'fill': 'WHITE', 'stroke': 'none', 'stroke-width': 0 }
             const LED = { 'fill': 'WHITE', 'stroke': 'none', 'stroke-width': 0 }
-            const LEDGROUPBAR = { 'stroke': MAINCOLOR1, 'stroke-width': 0.5 }
+            const LEDGROUPBAR = { 'stroke': c[v['_LABEL_PLATE1_COLOR'].val], 'stroke-width': v['_GROUPBAR_THICKNESS'].val }
 
             //const HIDDEN={'fill':'#888', 'stroke': 'none', 'stroke-width': 'none'}
 
@@ -263,7 +276,8 @@
             var fonts = ['Audiowide', 'Lexend Zetta', 'Michroma', 'Syncopate', 'Coustard', 'Bungee']
 
             // Decorative frame
-            const FRAME_COLOR = MAINCOLOR1
+            var FRAME_COLOR = c[v['_FRAME_COLOR'].val]
+
             const FRAME_BGCOLOR = 'BLACK'
             Frame(LEFT, TOP, WIDTH, HEIGHT, v['_FRAMETOPTHICKNESS'].val, v['_FRAMETHICKNESS'].val);
 
@@ -523,18 +537,18 @@
                     { txt1: 'D', txt2: '', col: MAINCOLOR1, typ: 1 },
                     { txt1: 'E', txt2: '', col: MAINCOLOR1, typ: 1 },
                     { txt1: '', txt2: '', col: '', typ: 0 },
-                    { txt1: '0', txt2: '', col: MAINCOLOR1, typ: 0 },
-                    { txt1: '1', txt2: '', col: MAINCOLOR1, typ: 0 },
-                    { txt1: '2', txt2: '', col: MAINCOLOR1, typ: 0 },
-                    { txt1: '3', txt2: '', col: MAINCOLOR2, typ: 0 },
-                    { txt1: '4', txt2: '', col: MAINCOLOR2, typ: 0 },
-                    { txt1: '5', txt2: '', col: MAINCOLOR2, typ: 0 },
-                    { txt1: '6', txt2: '', col: MAINCOLOR1, typ: 0 },
-                    { txt1: '7', txt2: '', col: MAINCOLOR1, typ: 0 },
-                    { txt1: '8', txt2: '', col: MAINCOLOR1, typ: 0 },
-                    { txt1: '9', txt2: '', col: MAINCOLOR2, typ: 0 },
-                    { txt1: '10', txt2: '', col: MAINCOLOR2, typ: 0 },
-                    { txt1: '11', txt2: '', col: MAINCOLOR2, typ: 0 },
+                    { txt1: '0', txt2: '', col: c[v['_LABEL_PLATE1_COLOR'].val], typ: 0 },
+                    { txt1: '1', txt2: '', col: c[v['_LABEL_PLATE1_COLOR'].val], typ: 0 },
+                    { txt1: '2', txt2: '', col: c[v['_LABEL_PLATE1_COLOR'].val], typ: 0 },
+                    { txt1: '3', txt2: '', col: c[v['_LABEL_PLATE2_COLOR'].val], typ: 0 },
+                    { txt1: '4', txt2: '', col: c[v['_LABEL_PLATE2_COLOR'].val], typ: 0 },
+                    { txt1: '5', txt2: '', col: c[v['_LABEL_PLATE2_COLOR'].val], typ: 0 },
+                    { txt1: '6', txt2: '', col: c[v['_LABEL_PLATE1_COLOR'].val], typ: 0 },
+                    { txt1: '7', txt2: '', col: c[v['_LABEL_PLATE1_COLOR'].val], typ: 0 },
+                    { txt1: '8', txt2: '', col: c[v['_LABEL_PLATE1_COLOR'].val], typ: 0 },
+                    { txt1: '9', txt2: '', col: c[v['_LABEL_PLATE2_COLOR'].val], typ: 0 },
+                    { txt1: '10', txt2: '', col: c[v['_LABEL_PLATE2_COLOR'].val], typ: 0 },
+                    { txt1: '11', txt2: '', col: c[v['_LABEL_PLATE2_COLOR'].val], typ: 0 },
                     { txt1: '', txt2: '', col: '', typ: 0 },
                     { txt1: 'CLEAR', txt2: 'LOAD', col: MAINCOLOR1, typ: 2 },
                     { txt1: 'RUN', txt2: 'HALT', col: MAINCOLOR1, typ: 2 },
@@ -603,8 +617,17 @@
         }
 
 
-function Download() {
-var svgbase=`<svg 
+function Download(t) {
+    var d=new Date();
+    var dt=d.toISOString().substring(0,4)+
+    d.toISOString().substring(5,7)+ 
+    d.toISOString().substring(8,10)+
+    "_"+
+    d.toTimeString().substring(0,2)+
+    d.toTimeString().substring(3,5); 
+
+        if (t==1) {
+        var svgbase=`<svg 
 version="1.1"
 xmlns:svgjs="http://svgjs.com/svgjs"
 xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -616,14 +639,28 @@ width="594mm"
 height="420mm">
 @@@
 </svg>`
-    var ink=svgbase.replace('@@@',draw.svg(false));
-    var element = document.createElement('a');
-    element.setAttribute('href', 'data:application/octet-stream,' + encodeURIComponent(ink));
-    element.setAttribute('download', 'PDP8-X_FrontPanel.svg');
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+
+        var ink=svgbase.replace('@@@',draw.svg(false));
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:application/octet-stream,' + encodeURIComponent(ink));
+        element.setAttribute('download', 'Panel_'+dt+'.svg');
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+    }
+
+    if (t==2) {
+        var url="[InternetShortcut]\nURL="+window.location.href;
+                var element = document.createElement('a');
+        element.setAttribute('href', 'data:application/octet-stream,' + encodeURIComponent(url));
+        element.setAttribute('download', 'Panel_'+dt+'.url');
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+    }
+
 }
 
     </script>
