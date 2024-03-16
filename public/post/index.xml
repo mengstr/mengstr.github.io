@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Code and Electronics</title>
+    <link>http://localhost:1313/post/</link>
+    <description>Recent content in Posts on Code and Electronics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 16 Mar 2024 12:41:56 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>http://localhost:1313/post/associate_dig_files_with_digital_on_macos/</link>
+      <pubDate>Sat, 16 Mar 2024 12:41:56 +0100</pubDate>
+      <guid>http://localhost:1313/post/associate_dig_files_with_digital_on_macos/</guid>
+      <description>Here are the steps I take to associate .dig files to autostart the Digital application on double-click.&#xA;Normally a script/shell file can&amp;rsquo;t be associated to an extension in macOS. To solve this I make a small &amp;ldquo;app&amp;rdquo; using the built-in Automator application and have that run a script that runs Digital.&#xA;1 Run Automator (cmd-space and type automator)&#xA;2 Click on “New Documant” and choose “Application” 3 Drag “Run Shell Script” into the grey area 4 Change “Pass input” to “as arguments” and replace the example script with the text</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Associate .dig files with Digital on macOS - Code and Electronics</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Code and Electronics" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Code and Electronics</div>
+					<div class="logo__tagline">and maybe a bit of other stuff</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Associate .dig files with Digital on macOS</h1>
+			
+		</header>
+		<div class="content post__content clearfix">
+			<p>Here are the steps I take to associate <strong>.dig</strong> files to autostart the <a href="https://google.com">Digital</a> application on double-click.</p>
+<p>Normally a script/shell file can&rsquo;t be associated to an extension in macOS. To solve this I make a small &ldquo;app&rdquo; using the built-in Automator application and have that run a script that runs Digital.</p>
+<p><strong>1 Run Automator (cmd-space and type automator)</strong></p>
+<p><strong>2 Click on “New Documant” and choose “Application”</strong>
+<figure><img src="/images/automator-app-type.png" width="600"/>
+</figure>
+</p>
+<p><strong>3 Drag “Run Shell Script” into the grey area</strong>
+<figure><img src="/images/automator-drag-to-grey.png" width="600"/>
+</figure>
+</p>
+<p><strong>4 Change “Pass input” to “as arguments” and replace the example script with the text</strong></p>
+<p><code>java -jar /Applications/Digital/Digital.jar $1 &gt;/dev/null 2&gt;&amp;1 &amp;</code>
+<figure><img src="/images/automator-script.png" width="600"/>
+</figure>
+</p>
+<p><strong>6 Save it as Digital.app in /Applications/Digital (or wherever you have Digital saved)</strong></p>
+<p><strong>7 Right click on any .dig-file and select “Get Info”. Change the “Open with:” to “Other” and navigate to /Applications/Digital and there select the Digital.app</strong>
+<figure><img src="/images/automator-finder-open-with.png" width="600"/>
+</figure>
+</p>
+<p><strong>9 Finally click on the “Change All”-button</strong></p>
+
+		</div>
+	</article>
+</main>
+
+
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2024 Mats Engström.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
