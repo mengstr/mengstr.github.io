@@ -7,6 +7,9 @@ Here are the steps I take to associate **.dig** files to autostart the [Digital]
 
 Normally a script/shell file can't be associated to an extension in macOS. To solve this I make a small "app" using the built-in Automator application and have that run a script that runs Digital.
 
+
+> Please note that these intructions assume that you have installed the Digital "jar" file in /Applications/Digital If you're having it somewhere else you need to adjust the Automator code. ==
+
 **1 Run Automator (cmd-space and type automator)**
 
 **2 Click on “New Document” and choose “Application”**
@@ -25,5 +28,5 @@ Normally a script/shell file can't be associated to an extension in macOS. To so
 **7 Right click on any .dig-file and select “Get Info”. Change the “Open with:” to “Other” and navigate to /Applications/Digital and there select the Digital.app**
 {{< figure src="/images/automator-finder-open-with.png" width="600">}}
 
-**9 Finally click on the “Change All”-button**
+**8 Finally click on the “Change All”-button**
 
