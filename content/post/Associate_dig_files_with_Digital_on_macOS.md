@@ -9,7 +9,7 @@ Normally a script/shell file can't be associated to an extension in macOS. To so
 
 **1 Run Automator (cmd-space and type automator)**
 
-**2 Click on “New Documant” and choose “Application”**
+**2 Click on “New Document” and choose “Application”**
 {{< figure src="/images/automator-app-type.png" width="600">}}
 
 **3 Drag “Run Shell Script” into the grey area** 
