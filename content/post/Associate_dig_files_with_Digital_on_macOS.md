@@ -25,7 +25,7 @@ Normally a script/shell file can't be associated to an extension in macOS. To so
 
 **6 Save it as Digital.app in /Applications/Digital (or wherever you have Digital saved)**
 
-**7 Right click on any .dig-file and select “Get Info”. Change the “Open with:” to “Other” and navigate to /Applications/Digital and there select the Digital.app**
+**7 Right click on any .dig-file and select “Get Info”. Change the “Open with:” to “Other” and navigate to /Applications/Digital/ and select the newly created Digital.app there**
 {{< figure src="/images/automator-finder-open-with.png" width="600">}}
 
 **8 Finally click on the “Change All”-button**
