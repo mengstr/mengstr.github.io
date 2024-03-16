@@ -3,7 +3,7 @@ title = 'Associate .dig files with Digital on macOS'
 date = 2024-03-16T12:41:56+01:00
 draft = false
 +++
-Here are the steps I take to associate **.dig** files to autostart the [Digital](https://google.com) application on double-click.
+Here are the steps I take to associate **.dig** files to autostart the [Digital](https://github.com/hneemann/Digital) application on double-click.
 
 Normally a script/shell file can't be associated to an extension in macOS. To solve this I make a small "app" using the built-in Automator application and have that run a script that runs Digital.
 
