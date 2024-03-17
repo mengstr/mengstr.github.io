@@ -2,13 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/post/associate_dig_files_with_digital_on_macos/</loc>
-    <lastmod>2024-03-16T12:41:56+01:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2024-03-16T12:41:56+01:00</lastmod>
+    <lastmod>2024-03-17T10:03:05+01:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/</loc>
+    <lastmod>2024-03-17T10:03:05+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/vias_and_trace_resistance/</loc>
+    <lastmod>2024-03-17T10:03:05+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/associate_dig_files_with_digital_on_macos/</loc>
     <lastmod>2024-03-16T12:41:56+01:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>

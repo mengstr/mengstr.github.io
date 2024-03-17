@@ -55,8 +55,17 @@ theme = "mainroad"
   # title = "Mainroad" # Logo title, otherwise will use site title
   subtitle = "and maybe a bit of other stuff" # Logo subtitle
 
-# [Params.thumbnail]
-#   visibility = ["list", "post"] # Control thumbnail visibility
+[Params.thumbnail]
+  visibility = ["list"] # Control thumbnail visibility
+
+[markup.goldmark.parser]
+  # autoHeadingID = true
+  # autoHeadingIDType = "github"
+  withAttribute = true
+  [markup.goldmark.parser.attribute]
+    image = true
+    block = true
+    title = true
 
 # [Params.sidebar]
 #   home = "right" # Configure layout for home page

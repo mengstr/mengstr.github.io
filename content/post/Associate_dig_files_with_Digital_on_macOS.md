@@ -2,6 +2,7 @@
 title = 'Associate .dig files with Digital on macOS'
 date = 2024-03-16T12:41:56+01:00
 draft = false
+thumbnail.src = 'images/tn/digital.png'
 +++
 Here are the steps I take to associate **.dig** files to autostart the [Digital](https://github.com/hneemann/Digital) application on double-click.
 
@@ -25,7 +26,7 @@ Normally a script/shell file can't be associated to an extension in macOS. To so
 
 **6 Save it as Digital.app in /Applications/Digital (or wherever you have Digital saved)**
 
-**7 Right click on any .dig-file and select “Get Info”. Change the “Open with:” to “Other” and navigate to /Applications/Digital/ and select the newly created Digital.app there**
+**7 Right click on any .dig-file and select “Get Info”. Change the “Open with:” to “Other” and navigate to /Applications/Digital/ and select the newly created Digital.app there.**
 {{< figure src="/images/automator-finder-open-with.png" width="600">}}
 
 **8 Finally click on the “Change All”-button**

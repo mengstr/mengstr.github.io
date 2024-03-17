@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vias and trace resistance - Code and Electronics</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Code and Electronics" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Code and Electronics</div>
+					<div class="logo__tagline">and maybe a bit of other stuff</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Vias and trace resistance</h1>
+			
+		</header>
+		
+		
+		
+<div class="post__toc toc">
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#background">Background</a></li>
+    <li><a href="#traces">Traces</a></li>
+    <li><a href="#trace-groups">Trace groups</a></li>
+    <li><a href="#measurements">Measurements</a></li>
+    <li><a href="#conclusions">Conclusions</a>
+      <ul>
+        <li><a href="#bare-vs-normal">Bare vs Normal</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<p>Does vias in a trace affect the resistance (and the current carrying capability)? If so - does it get worse or better?</p>
+<p>TL;DR - 5 mil traces gets a bit lower resistance with vias, thicker traces get ever so slightly worse.</p>
+<h2 id="background">Background</h2>
+<p>Back in September I asked this question on Twitter and it got a number of conflicting opinions. My personal thought was that it would get worse. But to really know I made a simple PCB to test a number of different versions and widths of traces with vias.</p>
+<p>Of course this is just for one particular fab (JLCPCB) and just for a couple of traces, so no definite conclusions can be made but at least it points towards an answer.</p>
+<p>The PCB I made have five traces each at 5,20 and 40mil (0.12, 0.5 and 1mm).  The traces are all 100mm (about 4 inches) in length. Since I wanted to keep the PCB size within the limitations of the cheapest boards I had to meander them a bit, but that should not affect the result more than just a really tiny bit.</p>
+<figure><img src="/images/via_resistance_photo.jpg" width="600"/>
+</figure>
+
+<h2 id="traces">Traces</h2>
+<p>The first trace is just a plain trace to get a base reading.</p>
+<p>The second trace have the solder mask removed to see if the thin layer of tin put there by the HASL process reduces the resistance.</p>
+<p>The third trace have a trace on both bottom and top which should give roughly half the resistance.</p>
+<p>The fourth trace have 10 vias inserted along the path. The vias aren&rsquo;t connected at the bottom.</p>
+<p>The fifth trace also have 10 vias but here the trace jumps to the other side of the PCB and contunites there until the next via.</p>
+<h2 id="trace-groups">Trace groups</h2>
+<p>The first group have 5 mil traces and the vias are 0.3mm with an annular ring of 0.15mm giving a total pad size of 0.3+0.15+0.15=0.6mm  That&rsquo;s the minimum sizes for their cheapest standard 2-Layer prototype boards. Ah yes, the boards have the regular 1oz copper as well.</p>
+<p>The second group with the 0.5mm (20mil) traces have the same 0.3/0.6mm vias.</p>
+<p>The third group with the beefier 1mm (40mil) traces have 0.8mm vias with the same 0.15mm annular rings giving s total of 1.1mm pad diameter.</p>
+<h2 id="measurements">Measurements</h2>
+<p>I made the measurements with my Keithley 197 microvolt 5 1/2 digit DMM using 4-wire Kelvin leads. In the 200 ohm range it gives me a 1 mOhm resolution. Maybe not super great, but probably enough for these simple measurements.</p>
+<table class="autotable">
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">5 mil</th>
+<th style="text-align:left">Δ</th>
+<th></th>
+<th style="text-align:right">0.5 mm</th>
+<th style="text-align:left">Δ</th>
+<th></th>
+<th style="text-align:right">1 mm</th>
+<th style="text-align:left">Δ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">Normal</td>
+<td style="text-align:right">454 mΩ</td>
+<td style="text-align:left">ref</td>
+<td></td>
+<td style="text-align:right">78 mΩ</td>
+<td style="text-align:left">ref</td>
+<td></td>
+<td style="text-align:right">38 mΩ</td>
+<td style="text-align:left">ref</td>
+</tr>
+<tr>
+<td style="text-align:right">Bare</td>
+<td style="text-align:right">437 mΩ</td>
+<td style="text-align:left">-4%</td>
+<td></td>
+<td style="text-align:right">80 mΩ</td>
+<td style="text-align:left">+3%</td>
+<td></td>
+<td style="text-align:right">39 mΩ</td>
+<td style="text-align:left">+3%</td>
+</tr>
+<tr>
+<td style="text-align:right">Double</td>
+<td style="text-align:right">208 mΩ</td>
+<td style="text-align:left">-54%</td>
+<td></td>
+<td style="text-align:right">39 mΩ</td>
+<td style="text-align:left">-50%</td>
+<td></td>
+<td style="text-align:right">20 mΩ</td>
+<td style="text-align:left">-47%</td>
+</tr>
+<tr>
+<td style="text-align:right">Vias</td>
+<td style="text-align:right">339 mΩ</td>
+<td style="text-align:left">-25%</td>
+<td></td>
+<td style="text-align:right">78 mΩ</td>
+<td style="text-align:left">0%</td>
+<td></td>
+<td style="text-align:right">39 mΩ</td>
+<td style="text-align:left">+3%</td>
+</tr>
+<tr>
+<td style="text-align:right">Jumping</td>
+<td style="text-align:right">410 mΩ</td>
+<td style="text-align:left">-10%</td>
+<td></td>
+<td style="text-align:right">89 mΩ</td>
+<td style="text-align:left">+14%</td>
+<td></td>
+<td style="text-align:right">41 mΩ</td>
+<td style="text-align:left">+8%</td>
+</tr>
+</tbody>
+</table>
+<h2 id="conclusions">Conclusions</h2>
+<p>The 25% reduction in resistace when the vias was put in the 5 mil trace clearly shows that the annular ring and part of the via-&ldquo;tube&rdquo; have a larger area than just the trace itself. (I didn&rsquo;t expect that at all!)</p>
+<p>The alterate top/bottom jumping was not as good as just having vias - that suggests that the via-tube do have a smaller cross section area compared to the trace.</p>
+<p>The thicker (0.5 and 1 mm) traces got worse when broken up by vias, so for power traces it might be a good idea to put the vias just next to the main trace and have a short trace going between them. But the it&rsquo;s only a couple of percent worse so maybe it really dosen&rsquo;t matter. Maybe a proportionally larger annular ring would fix the issu as well.</p>
+<h3 id="bare-vs-normal">Bare vs Normal</h3>
+<p>I don&rsquo;t have an explanation for the bare trace having a slighly higher resistance compared to the covered 5 mil trace. It might just be a fluke. The thicker traces got slightly better, I guess the HASL process leave a very thin layer of tin on the trace so it doesn&rsquo;t make much of a difference. S there&rsquo;s no real use for doing this.</p>
+<p>Just to check I manually added extra solder onto the bare traces. This got me a -8% (from the normal reference value) on the 5 mil,-16% on the 0.5 mm and -28% on the 1 mm trace.  A 20-30% decrease in resistace is not bad and absolutely is something to consider for higher currents when you can&rsquo;t widen the trace or don&rsquo;t want to pay extra for 2oz copper.</p>
+		</div>
+	</article>
+</main>
+
+
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2024 Mats Engström.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+		<a title="GDPR-compliant Web Analytics" href="https://clicky.com/101447262"><img alt="Clicky" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
+		<script async data-id="101447262" src="//static.getclicky.com/js"></script>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
