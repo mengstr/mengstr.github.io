@@ -2,9 +2,7 @@
 title = 'Vias and trace resistance'
 date = 2024-03-17T10:03:05+01:00
 thumbnail.src = 'images/tn/via_resistance.jpg'
-draft = true
-#summary= "Does vias in a trace affect the resistance (and the current carrying capability)? If so - does it get worse or better? TL;DR - 5 mil traces gets a bit lower resistance with vias, thicker traces get ever so slightly worse."
-
+draft = false
 +++
 Does vias in a trace affect the resistance (and the current carrying capability)? If so - does it get worse or better?
 
